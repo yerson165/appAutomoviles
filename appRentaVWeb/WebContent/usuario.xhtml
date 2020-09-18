@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">  
+
+<h:head></h:head> 
+<body> 
+	
+	<p:messages autoUpdate="true"></p:messages>
+	   
+	<h:panelGrid columns="2">
+        <h:form id="form1">
+            <p:panel header="INGRESO DE USUARIOS">
+                <p:panelGrid columns="2">
+                    <h:outputText value="NOMBRE:" />
+                    <p:inputText value="#{}"
+						required="true" requiredMessage="Especifique el nombre" />
+                    <h:outputText value="APELLIDO:" />
+                    <p:inputText value="#{}"
+						required="true" requiredMessage="Indique el apellido" />
+                    
+					<h:outputText value="DIRECCION:" />
+                    <p:inputText value="#{}"
+						required="true" requiredMessage="Indique la direccion" />
+                    <h:outputText value="TELEFONO:" />
+                    <p:inputNumber value="#{}"  minlenght="10" required="true"/>
+					<h:outputText value="CORREO:" />
+                   <p:inputText value="#{}"
+						required="true" requiredMessage="Indique el correo" />
+                   
+					<h:outputText value="CONTRASEÑA:" />
+					<p:password value="#{}" required="true" requiredMessage="Indique la contraseña"></p:password>
+
+                    <p:commandButton value="Agregar" icon="ui-icon-disk"
+						update="@form,:form2:tabla1" actionListener="#{}">
+                    </p:commandButton>
+                </p:panelGrid>
+            </p:panel>
+        </h:form>
+        <h:form id="form2">
+            <p:panel header="LISTA DE USUARIOS">
+                <p:dataTable value="#{}" var="a" id="tabla1">
+                    <p:column headerText="NOMBRE">
+                        <h:outputText value="#{}" />
+                    </p:column>
+                    <p:column headerText="APELLIDO">
+                        <h:outputText value="#{}" />
+                    </p:column>
+                    <p:column headerText="DIRECCION">
+                        <h:outputText value="#{}" />
+                    </p:column>
+                    <p:column headerText="TELEFONO">
+                        <h:outputText value="#{}" />
+                    </p:column>
+                    <p:column headerText="CORREO">
+                        <h:outputText value="#{}" />
+                    </p:column>
+                   
+                    <p:column headerText="ELIMINAR">
+                        <p:commandButton icon="ui-icon-close"
+							update="@form" actionListener="#{}"></p:commandButton>
+                    </p:column>
+                    <p:column headerText="EDITAR">
+                        <p:commandButton icon="ui-icon-pencil"
+							update="form4" onclick="PF('dialogo1').show();"
+							actionListener="#{}"></p:commandButton>
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="RESET" icon="ui-icon-refresh"
+					 update="tabla1"
+					 actionListener="#{}"></p:commandButton>
+            </p:panel>
+        </h:form> </h:panelGrid>
+	   
+	<p:dialog header="Edición de usuario" widgetVar="dialogo1"
+		 id="dialogo1" modal="true" height="200">
+        <h:form id="form4">
+            <p:messages autoUpdate="true"></p:messages>
+            <p:panelGrid columns="2">
+                <h:outputText value="id:" />
+                <h:outputText value="#{}" />
+                <h:outputText value="NOMBRE:" />
+                <p:inputText value="#{}"
+					required="true" />
+                <h:outputText value="APELLIDO:" />
+                <p:inputText value="#{}"
+					required="true" />
+                 <h:outputText value="DIRECCION:" />
+                <p:inputText value="#{}"
+					required="true" />
+                 <h:outputText value="TELEFONO:" />
+                <p:inputNumber value="#{}"
+					required="true" />
+                 <h:outputText value="CORREO:" />
+                <p:inputText value="#{}"
+					required="true" />
+                 <h:outputText value="CONTRASEÑA:" />
+                <p:password value="#{}"
+					required="true" />
+          
+        <p:commandButton value="Actualizar"
+					update="@form,:form2:tabla1"
+					actionListener="#{}"></p:commandButton>
+            </p:panelGrid>
+        </h:form>
+    </p:dialog>
+
+</body> 
+</html>
